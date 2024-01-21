@@ -113,18 +113,18 @@ testscritpts are stored in:
 
 WinCCOA_QualityChecks_tests/scripts/**tests**/CtrlppCheck/testscripts
 
-result files (.xml) are stored in:  
+result files (.xml) are stored in:
 WinCCOA_QualityChecks_tests/**data**/CtrlppCheck/testscripts
 
-example:  
-y2038.ctl  
+example:
+y2038.ctl
 und y2038.xml
 
 Each file in the scripts folder has a corresponding result file in the result files dir: same name, different extension
 Subdirs are allowed to organize testases, must appera in bith directories; simply create new directories and throw your testcode, resp result files in there.
 
-Errors will be thrown, if for a .ctl file no .xml can be found.  
-If there is an error is in the .ctl file and no corresponding <error> in the .xml file the test will pass.  
+Errors will be thrown, if for a .ctl file no .xml can be found.
+If there is an error is in the .ctl file and no corresponding <error> in the .xml file the test will pass.
 if no error is in the .ctl file and an <error> is in the .xml file a warning will be issued.
 
 Testresults will be written to: "<project_dir>/log/CtrlppCheck/testscripts/suspiciousSemicolon.xml"
@@ -133,13 +133,13 @@ Testresults will be written to: "<project_dir>/log/CtrlppCheck/testscripts/suspi
 
 **config files** are loaded from
 
-<winccoa_install_path>/data/DevTools/Base/ctrl.xml // general  
+<winccoa_install_path>/data/DevTools/Base/ctrl.xml // general
 WinCCOA_QualityChecks/data/CtrlppCheck/cfg/**proj**.xml // proj specific
 
 configs define Ctrl Language specific stuff. Konstants, intrfaces of functions, ...
 
 **rules** are loaded from
-<winccoa_install_path>/data/DevTools/Base/ctrl.xml // general  
+<winccoa_install_path>/data/DevTools/Base/ctrl.xml // general
 WinCCOA_QualityChecks/data/CtrlppCheck/rule/**proj**.xml // proj specific
 
 Rules files define patterns
@@ -154,15 +154,15 @@ examples:
 
 suspicious semicolon
 
-testscript: D:/Repos/CtrlppCheck_gulasch/WinCCOA_QualityChecks_tests/scripts/tests/CtrlppCheck/testscripts/suspiciousSemicolon.ctl  
-(naming should be: test_suspiciousSemicolon.ctl)  
-resultfile: D:/Repos/CtrlppCheck_gulasch/WinCCOA_QualityChecks_tests/data/CtrlppCheck/testscriptssuspiciousSemiclon.xml  
+testscript: D:/Repos/CtrlppCheck_gulasch/WinCCOA_QualityChecks_tests/scripts/tests/CtrlppCheck/testscripts/suspiciousSemicolon.ctl
+(naming should be: test_suspiciousSemicolon.ctl)
+resultfile: D:/Repos/CtrlppCheck_gulasch/WinCCOA_QualityChecks_tests/data/CtrlppCheck/testscriptssuspiciousSemiclon.xml
 (naming should be: test_suspiciousSemicolon.xml)
 
-the ceck itself:  
-D:/Repos/CtrlppCheck_gulasch/CtrlppCheck/lib/checks/checkother.h, checkother.cpp Zeile 141 ff  
-Der Check selbst (was tut er, findet) ist beschrieben in: keine Beschreibung gefunden, ausser im Kommentar im Code  
+the ceck itself:
+D:/Repos/CtrlppCheck_gulasch/CtrlppCheck/lib/checks/checkother.h, checkother.cpp Zeile 141 ff
+Der Check selbst (was tut er, findet) ist beschrieben in: keine Beschreibung gefunden, ausser im Kommentar im Code
 Das ist ein ziemlich kleiner check daher in check, daher auc nicht in eingenem file implementiert
 
-check 2038  
+check 2038
 implemented in check2038.h ud 2038.cpp
