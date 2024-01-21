@@ -10,7 +10,7 @@ cmake --build .  --config Release
 
 ## Debug
 
-```bash 
+```bash
 cmake .. -G "Visual Studio 16 2019" -A x64
 cmake --build .  --config Debug
 ```
@@ -28,11 +28,11 @@ cmake --build .  --config Release
 
 ## How to add new tests for CtrlppCheck from scratch
 
-+ copy the Project "WinCCOA_QualityChecks_tests" from the repository to your projects and add it as a subproject to your current project.
-+ visit this site: <https://github.com/danmar/cppcheck/tree/master/test> and download a test file (e.g. testautovariables.cpp).
-+ open GEDI and create new ctrl script in the /scripts/tests/CtrlppCheck directory of the "WinCCOA_QualityChecks_tests" subproject with the same name. (testautovariables.ctl)
-+ paste the content of cpp file into the ctrl file
-+ comment this block out
+- copy the Project "WinCCOA_QualityChecks_tests" from the repository to your projects and add it as a subproject to your current project.
+- visit this site: <https://github.com/danmar/cppcheck/tree/master/test> and download a test file (e.g. testautovariables.cpp).
+- open GEDI and create new ctrl script in the /scripts/tests/CtrlppCheck directory of the "WinCCOA_QualityChecks_tests" subproject with the same name. (testautovariables.ctl)
+- paste the content of cpp file into the ctrl file
+- comment this block out
 
 ```cpp
 #include "checkautovariables.h"
@@ -41,30 +41,30 @@ cmake --build .  --config Release
 #include "tokenize.h"
 ```
 
-+ change the class to struct - so the interfaces are public for ctrl script
+- change the class to struct - so the interfaces are public for ctrl script
 
 ```cpp
 cpp style
  class TestAutoVariables : public TestFixture {
 
---> 
+-->
 
 ctrl style
   struct estAutoVariables : TestFixture {
 ```
 
-+ remove the keywords `public:` and `private:`
-+ remove the unecessary constructor and Settings member variable.
+- remove the keywords `public:` and `private:`
+- remove the unecessary constructor and Settings member variable.
 
 ```cpp
 TestAutoVariables() : TestFixture("TestAutoVariables") {
 
 }
-Settings settings; 
+Settings settings;
 ```
 
-+ also remove the function check(). It is defined in class TestFixture
-+ remove OVERRIDE in the run() definition
+- also remove the function check(). It is defined in class TestFixture
+- remove OVERRIDE in the run() definition
 
 ```cpp
 cpp style
@@ -76,7 +76,7 @@ ctrl style
 void run()  { ... }
 ```
 
-+ replace `REGISTER_TEST` by `main()` function like following example
+- replace `REGISTER_TEST` by `main()` function like following example
 
 ```cpp
 cpp style
@@ -92,16 +92,16 @@ void main()
 }
 ```
 
-+ add add  `#uses "classes/QualityGates/Tools/CppCheck/TestFixture"`
-+ save the script and try to it run from OA-console with a Ctrl Manager - All assertions and results are written to log.
+- add add `#uses "classes/QualityGates/Tools/CppCheck/TestFixture"`
+- save the script and try to it run from OA-console with a Ctrl Manager - All assertions and results are written to log.
 
 ### How to add new tests for CtrlppCheck - the easy way
 
 The steps described in the chapter above have already been made and a template is available:
 
-+ Make a copy the file scripts/tests/CtrlppCheck/template.ctl
-+ Open the file and edit the test.
-+ save the script and try it to run from oa-console with a Ctrl-Manager - All assertions and results are written to log.
+- Make a copy the file scripts/tests/CtrlppCheck/template.ctl
+- Open the file and edit the test.
+- save the script and try it to run from oa-console with a Ctrl-Manager - All assertions and results are written to log.
 
 **Don't forgot to document new testcases!**
 
@@ -109,7 +109,7 @@ The steps described in the chapter above have already been made and a template i
 
 ## Tests: scripts and results
 
-testscritpts are stored in:  
+testscritpts are stored in:
 
 WinCCOA_QualityChecks_tests/scripts/**tests**/CtrlppCheck/testscripts
 
@@ -118,51 +118,51 @@ WinCCOA_QualityChecks_tests/**data**/CtrlppCheck/testscripts
 
 example:  
 y2038.ctl  
-und y2038.xml  
+und y2038.xml
 
 Each file in the scripts folder has a corresponding result file in the result files dir: same name, different extension
-Subdirs are allowed to organize testases, must appera in bith directories; simply create new directories and throw your testcode, resp result files in there.  
+Subdirs are allowed to organize testases, must appera in bith directories; simply create new directories and throw your testcode, resp result files in there.
 
 Errors will be thrown, if for a .ctl file no .xml can be found.  
 If there is an error is in the .ctl file and no corresponding <error> in the .xml file the test will pass.  
-if  no error is in the .ctl file and an <error> is in the .xml file a warning will be issued.  
+if no error is in the .ctl file and an <error> is in the .xml file a warning will be issued.
 
 Testresults will be written to: "<project_dir>/log/CtrlppCheck/testscripts/suspiciousSemicolon.xml"
 
 ## Tests: configs and rules
 
-**config files** are loaded from 
+**config files** are loaded from
 
 <winccoa_install_path>/data/DevTools/Base/ctrl.xml // general  
-WinCCOA_QualityChecks/data/CtrlppCheck/cfg/__proj__.xml // proj specific  
+WinCCOA_QualityChecks/data/CtrlppCheck/cfg/**proj**.xml // proj specific
 
 configs define Ctrl Language specific stuff. Konstants, intrfaces of functions, ...
 
 **rules** are loaded from
 <winccoa_install_path>/data/DevTools/Base/ctrl.xml // general  
-WinCCOA_QualityChecks/data/CtrlppCheck/rule/__proj__.xml // proj specific  
+WinCCOA_QualityChecks/data/CtrlppCheck/rule/**proj**.xml // proj specific
 
 Rules files define patterns
 performance issues (do not use delay(), branding etc.
 for a description of file format see: /Documentation/namingCheck.md
 to create new rules and config files, see: /Documentation/namingCheck.md
 
-Naming rules files define patterns 
+Naming rules files define patterns
 for names (variables, files, functions,...)
 
-examples:  
+examples:
 
 suspicious semicolon
 
 testscript: D:/Repos/CtrlppCheck_gulasch/WinCCOA_QualityChecks_tests/scripts/tests/CtrlppCheck/testscripts/suspiciousSemicolon.ctl  
 (naming should be: test_suspiciousSemicolon.ctl)  
 resultfile: D:/Repos/CtrlppCheck_gulasch/WinCCOA_QualityChecks_tests/data/CtrlppCheck/testscriptssuspiciousSemiclon.xml  
-(naming should be: test_suspiciousSemicolon.xml)  
+(naming should be: test_suspiciousSemicolon.xml)
 
 the ceck itself:  
 D:/Repos/CtrlppCheck_gulasch/CtrlppCheck/lib/checks/checkother.h, checkother.cpp Zeile 141 ff  
-Der Check selbst (was tut er, findet) ist beschrieben in:  keine Beschreibung gefunden, ausser im Kommentar im Code  
-Das ist ein ziemlich kleiner check daher in check, daher auc nicht in eingenem file implementiert  
+Der Check selbst (was tut er, findet) ist beschrieben in: keine Beschreibung gefunden, ausser im Kommentar im Code  
+Das ist ein ziemlich kleiner check daher in check, daher auc nicht in eingenem file implementiert
 
 check 2038  
 implemented in check2038.h ud 2038.cpp
