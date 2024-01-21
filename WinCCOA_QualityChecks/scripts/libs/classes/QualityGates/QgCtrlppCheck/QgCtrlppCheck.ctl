@@ -7,9 +7,9 @@
 // SPDX-License-Identifier: GPL-3.0-only
 //
 
-#uses "classes/QualityGates/Tools/CppCheck/CppCheckError"
+#uses "classes/QualityGates/Tools/CtrlppCheck/CtrlppCheckError"
 #uses "classes/FileSys/QgFile"
-#uses "classes/QualityGates/Tools/CppCheck/CppCheck"
+#uses "classes/QualityGates/Tools/CtrlppCheck/CtrlppCheck"
 #uses "classes/QualityGates/Qg"
 #uses "classes/QualityGates/QgBase"
 
@@ -70,7 +70,7 @@ class QgCtrlppCheck : QgBase
 
     for (int i = 1; i <= dynlen(check.errList); i++)
     {
-      CppCheckError error = check.errList[i];
+      CtrlppCheckError error = check.errList[i];
 
       if (isErrorFiltered(error))
         continue;
@@ -149,7 +149,7 @@ class QgCtrlppCheck : QgBase
 
   //------------------------------------------------------------------------------
   /// Checks if the error shall be filtered.
-  protected bool isErrorFiltered(const CppCheckError &error)
+  protected bool isErrorFiltered(const CtrlppCheckError &error)
   {
     /// @todo it shallbe somehow configurable and
     /// done in the ctrlppcheck (in cpp source) to eliminate CPU usage
@@ -186,7 +186,7 @@ class QgCtrlppCheck : QgBase
 //@private members
 //--------------------------------------------------------------------------------
 
-  CppCheck check;
+  CtrlppCheck check;
 };
 
 /// Start Qg ctrlppcheck.

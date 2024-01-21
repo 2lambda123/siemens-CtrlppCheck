@@ -8,7 +8,7 @@
 #uses "fileSys"
 
 //--------------------------------------------------------------------------------
-class CppCheckSettings
+class CtrlppCheckSettings
 {
 //--------------------------------------------------------------------------------
 //@public
@@ -22,7 +22,7 @@ class CppCheckSettings
   /// Show information messages when library files have incomplete info
   public bool enableLibCheck = FALSE;
   /// option --inconclusive
-  /// Allow that Cppcheck reports even though the analysis is inconclusive.
+  /// Allow that Ctrlppcheck reports even though the analysis is inconclusive.
   /// There are false positives with this option. Each result must be carefully
   /// investigated before you know if it is good or bad.
   public bool inconclusive = TRUE;

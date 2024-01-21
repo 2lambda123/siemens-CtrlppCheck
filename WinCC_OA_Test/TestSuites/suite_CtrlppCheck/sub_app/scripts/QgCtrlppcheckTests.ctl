@@ -9,15 +9,15 @@
 
 //--------------------------------------------------------------------------------
 // used libraries (#uses)
-#uses "classes/QualityGates/Tools/CppCheck/CppCheckError"
+#uses "classes/QualityGates/Tools/CtrlppCheck/CtrlppCheckError"
 #uses "fileSys"
-#uses "classes/QualityGates/Tools/CppCheck/CppCheck"
+#uses "classes/QualityGates/Tools/CtrlppCheck/CtrlppCheck"
 #uses "classes/QualityGates/Qg" /*!< tested object */
 #uses "classes/oaTest/OaTest"
 
 //--------------------------------------------------------------------------------
 
-class MockCppCheck : CppCheck
+class MockCtrlppCheck : CtrlppCheck
 {
   public void checkFile(const string &testFile)
   {
@@ -45,7 +45,7 @@ class MockCppCheck : CppCheck
     bool hasFailedRead = fileToString(refFile, str, "UTF8");
     str.trim();
     oaUnitAssertTrue(tcId, hasFailedRead, "Read reference file: " + refFile);
-    MockCppCheck reference;
+    MockCtrlppCheck reference;
 
     if (str.isEmpty())
     {
@@ -83,7 +83,7 @@ class MockCppCheck : CppCheck
 
     for (int i = 1; i <= dynlen(reference.errList); i++)
     {
-      CppCheckError expErr = reference.errList[i];
+      CtrlppCheckError expErr = reference.errList[i];
       string expErrorStr = expErr.toStdErrString();
       mapping map = makeMapping("ErrMsg", "Ctrlppcheck can not found this error:" +
                                 "\n  File:\n" + refFile +
@@ -135,7 +135,7 @@ class TstCtrlppcheck : OaTest
         }
 
         const string testFile = makeUnixPath(path);
-        MockCppCheck check;
+        MockCtrlppCheck check;
         check.settings.enableXmlFormat(TRUE);
 
         check.settings.enableLibCheck = FALSE;
