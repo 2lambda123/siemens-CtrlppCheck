@@ -13,7 +13,7 @@ file(GLOB cfgs "cfg/*.cfg")
 
 add_subdirectory(externals/tinyxml2)
 add_subdirectory(externals/simplecpp)
-add_subdirectory(lib)   # CppCheck Library 
-add_subdirectory(cli)   # Client application
+add_subdirectory(lib) # CppCheck Library
+add_subdirectory(cli) # Client application
 
 include(cmake/printInfo.cmake REQUIRED)
