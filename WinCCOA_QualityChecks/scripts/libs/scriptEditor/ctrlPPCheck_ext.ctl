@@ -213,5 +213,3 @@ void update_cb(const string dpe, const string cmd)
   string line = substr(cmd, strlen("line:"));
   seSetCursorPos((int)line - 1, 0);
 }
-
-
